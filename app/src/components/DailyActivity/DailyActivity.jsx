@@ -1,17 +1,12 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
-import { UserActivity } from '../../services/MockedAPI';
 
 import './DailyActivity.css';
 
-function DailyActivity() {
-  const { userId } = useParams();
-  const isMock = window.location.href.split('?')[1] || false;
-
-  const UserActivityData = UserActivity({userId, isMock});
+function DailyActivity(userActivityData) {
+  const UserActivityData = userActivityData.userActivityData; console.log("userActivityData", userActivityData);
 
   /**
    * Generate custom tooltip
