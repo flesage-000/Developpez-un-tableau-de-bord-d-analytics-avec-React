@@ -1,0 +1,30 @@
+.barchart-tooltip {
+  background-color: var(--clr-red-01);
+}
+
+.barchart-legend,
+.barchart-legend ul,
+.barchart-legend ul li {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.barchart-legend  {
+  justify-content: space-between;
+}
+.barchart-legend ul {
+  gap: 32px;
+}
+.barchart-legend ul li {
+  align-items: center;
+  gap: 10px;
+}
+.barchart-legend .icon {
+  background-color: var(--icon-color);
+  border-radius: 50%;
+
+  display: block;
+
+  height: var(--icon-size);
+  width: var(--icon-size);
+}
