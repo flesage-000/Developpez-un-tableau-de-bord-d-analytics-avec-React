@@ -8,6 +8,9 @@ function Welcome(userData) {
   return (
     <div className="welcome">
       <h2>Bonjour <span>{ UserFirstName }</span></h2>
+      <p>
+        Félicitation ! Vous avez explosé vos objectifs hier 👏
+      </p>
     </div>
   )
 }

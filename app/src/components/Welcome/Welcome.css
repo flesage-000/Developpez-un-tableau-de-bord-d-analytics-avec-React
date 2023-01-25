@@ -8,3 +8,10 @@
 .welcome span {
   color: var(--clr-red-03);
 }
+.welcome p {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+
+  margin-top: 41px;
+}
