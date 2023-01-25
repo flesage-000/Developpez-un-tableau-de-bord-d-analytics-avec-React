@@ -17,7 +17,7 @@ export function UserActivity(info) { // console.log("info.isMock", info);
   }
 }
 
-export function UserAverageSessions(datas) { console.log("datas.isMock", datas);
+export function UserAverageSessions(datas) { // console.log("datas.isMock", datas);
   if(datas.isMock) {
     let data = USER_AVERAGE_SESSIONS.find(user => user.userId === datas.userId * 1)
     console.log("UserAverageSessionsdd", data);
@@ -26,9 +26,9 @@ export function UserAverageSessions(datas) { console.log("datas.isMock", datas);
   }
 }
 
-export function UserPerformance(id, isMock) {
-  if(isMock) {
-    const data = USER_PERFORMANCE.find(user => user.userId === id*1)
+export function UserPerformance(datas) { console.log("datas.isMock", datas);
+  if(datas.isMock) {
+    const data = USER_PERFORMANCE.find(user => user.userId === datas.userId*1)
     console.log("UserPerformance", data);
     return data
   }
