@@ -3,7 +3,7 @@ import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE 
 export function UserMainData(id, isMock) {
   if(isMock) {
     const data = USER_MAIN_DATA.find(user => user.id === id*1)
-    console.log("UserMainData", data);
+    // console.log("UserMainData", data);
     return data
   }
 }
@@ -20,7 +20,7 @@ export function UserActivity(info) { // console.log("info.isMock", info);
 export function UserAverageSessions(datas) { // console.log("datas.isMock", datas);
   if(datas.isMock) {
     let data = USER_AVERAGE_SESSIONS.find(user => user.userId === datas.userId * 1)
-    console.log("UserAverageSessionsdd", data);
+    // console.log("UserAverageSessionsdd", data);
     data = setDayInWeek(data)
     return data.sessions
   }
@@ -28,10 +28,27 @@ export function UserAverageSessions(datas) { // console.log("datas.isMock", data
 
 export function UserPerformance(datas) { console.log("datas.isMock", datas);
   if(datas.isMock) {
-    const data = USER_PERFORMANCE.find(user => user.userId === datas.userId*1)
+    let data = USER_PERFORMANCE.find(user => user.userId === datas.userId*1)
     console.log("UserPerformance", data);
+    data = setUserPErformanceData(data);
     return data
   }
+}
+
+function setUserPErformanceData(datas) {
+  let newArray = [];
+  const kind = Object.values(datas.kind);
+  let data = datas.data;
+console.log("kind", kind);
+  data.forEach((element, index) => {
+    const newObject = {
+      activity: kind[index++],
+      kind: element.value,
+      fullMark: 200
+    };
+    newArray.push(newObject);
+  });
+  return newArray;
 }
 
 /**
@@ -51,7 +68,7 @@ function getDayCount(data) {
  * @param {object} data
  * @returns object
  */
-function setDayInWeek(data) { console.log("data", data, data.sessions.length);
+function setDayInWeek(data) {
   const dataLen = data.sessions.length;
   let dayInwWeek = null;
 
