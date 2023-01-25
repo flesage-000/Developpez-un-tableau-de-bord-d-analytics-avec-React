@@ -4,6 +4,7 @@
 
   --clr-red-01: #FF0000;
   --clr-red-02: #E60000;
+  --clr-red-03: rgba(255, 1, 1, 1);
 
   --clr-white-01: #FFF;
 }
@@ -15,6 +16,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  font-weight: 500;
 }
 
 code {

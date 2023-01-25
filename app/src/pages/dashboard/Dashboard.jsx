@@ -6,6 +6,7 @@ import DailyActivity from "../../components/DailyActivity/DailyActivity";
 import Indicator from "../../components/Indicators/Indicator";
 import Intensity from "../../components/Intensity/Intensity";
 import Score from "../../components/Score/Score";
+import Welcome from "../../components/Welcome/Welcome";
 import { UserActivity, UserAverageSessions, UserMainData, UserPerformance } from '../../services/MockedAPI';
 
 import './Dashboard.css';
@@ -72,6 +73,8 @@ function Dashboard() {
         </aside>
 
         <section>
+
+          <Welcome  userData={ UserMainData({userId, isMock}) } />
 
           <DailyActivity userActivityData={ UserActivity({userId, isMock}) } />
           <AverageSessions averageSessionsData={ UserAverageSessions({userId, isMock}) } />

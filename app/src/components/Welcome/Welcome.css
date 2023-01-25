@@ -1,0 +1,10 @@
+.welcome {
+  color: var(--clr-black-01);
+}
+.welcome h2 {
+  font-size: 48px;
+  line-height: 24px;
+}
+.welcome span {
+  color: var(--clr-red-03);
+}
