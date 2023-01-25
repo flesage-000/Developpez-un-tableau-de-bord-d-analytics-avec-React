@@ -1,5 +1,8 @@
 :root {
-  --clr-red-01: #E60000;
+  --clr-red-01: #FF0000;
+  --clr-red-02: #E60000;
+
+  --clr-white-01: #FFF;
 }
 
 body {

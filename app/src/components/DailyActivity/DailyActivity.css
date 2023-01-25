@@ -1,25 +1,25 @@
-.barchart-tooltip {
-  background-color: var(--clr-red-01);
+.daily-activity .barchart-tooltip {
+  background-color: var(--clr-red-02);
 }
 
-.barchart-legend,
-.barchart-legend ul,
-.barchart-legend ul li {
+.daily-activity .barchart-legend,
+.daily-activity .barchart-legend ul,
+.daily-activity .barchart-legend li {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
 }
-.barchart-legend  {
+.daily-activity .barchart-legend  {
   justify-content: space-between;
 }
-.barchart-legend ul {
+.daily-activity .barchart-legend ul {
   gap: 32px;
 }
-.barchart-legend ul li {
+.daily-activity .barchart-legend li {
   align-items: center;
   gap: 10px;
 }
-.barchart-legend .icon {
+.daily-activity .barchart-legend .icon {
   background-color: var(--icon-color);
   border-radius: 50%;
 

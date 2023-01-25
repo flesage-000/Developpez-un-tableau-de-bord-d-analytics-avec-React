@@ -1,0 +1,9 @@
+.average-sessions {
+  background-color: var(--clr-red-01);
+}
+.average-sessions h3 {
+  color: var(--clr-white-01);
+}
+.average-sessions .linechart-tooltip {
+  background-color: var(--clr-white-01);
+}

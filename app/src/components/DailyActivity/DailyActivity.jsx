@@ -2,11 +2,10 @@ import React from 'react';
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
-
 import './DailyActivity.css';
 
 function DailyActivity(userActivityData) {
-  const UserActivityData = userActivityData.userActivityData; console.log("userActivityData", userActivityData);
+  const UserActivityData = userActivityData.userActivityData;
 
   /**
    * Generate custom tooltip
@@ -51,7 +50,6 @@ function DailyActivity(userActivityData) {
   return (
     <div className="daily-activity">
       <BarChart barCategoryGap={8}
-                barSize={7}
                 data={UserActivityData}
                 height={250}
                 width={730}>
@@ -62,12 +60,14 @@ function DailyActivity(userActivityData) {
 
         <Tooltip  content={customToolTip} />
 
-        <Bar  dataKey="kilogram"
+        <Bar  barSize={7}
+              dataKey="kilogram"
               fill="#282D30"
               name="Poids (kg)"
               radius={[3.5, 3.5, 0, 0]} />
 
-        <Bar  dataKey="calories"
+        <Bar  barSize={7}
+              dataKey="calories"
               fill="#E60000"
               name="Calories brûlées (kCal)"
               radius={[3.5, 3.5, 0, 0]} />
