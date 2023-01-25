@@ -1,0 +1,12 @@
+button {
+  appearance: none;
+  background-color: var(--color-bg-medium-light-red);
+  border: none;
+  border-radius: var(--corner-radius-default);
+  color: var(--color-normal-text);
+  cursor: pointer;
+  font-family: var(--font-main);
+
+  margin: 0;
+  padding: 0;
+}

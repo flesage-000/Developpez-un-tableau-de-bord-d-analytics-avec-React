@@ -8,23 +8,84 @@ import Intensity from "../../components/Intensity/Intensity";
 import Score from "../../components/Score/Score";
 import { UserActivity, UserAverageSessions, UserMainData, UserPerformance } from '../../services/MockedAPI';
 
+import './Dashboard.css';
+import imgSportSeeLogo from './../../assets/medias/sportsee_logo.png';
+import imgYogaIconLogo from './../../assets/medias/icon-yoga.png';
+import imgSwimIconLogo from './../../assets/medias/icon-swim.png';
+import imgCycleIconLogo from './../../assets/medias/icon-cycle.png';
+import imgDumbbellIconLogo from './../../assets/medias/icon-dumbbell.png';
 
 function Dashboard() {
   const { userId } = useParams();
   const isMock = window.location.href.split('?')[1] || false;
-;
+
   return(
-    <div>
-      <h1>Dashboard</h1>
-      <DailyActivity userActivityData={ UserActivity({userId, isMock}) } />
-      <AverageSessions averageSessionsData={ UserAverageSessions({userId, isMock}) } />
-      <Intensity userPerformanceData={ UserPerformance({userId, isMock}) } />
-      <Score userScore={ UserMainData({userId, isMock}) } />
-      <Indicator userIndicator={ [UserMainData({userId, isMock}), 'calorieCount'] } />
-      <Indicator userIndicator={ [UserMainData({userId, isMock}), 'proteinCount'] } />
-      <Indicator userIndicator={ [UserMainData({userId, isMock}), 'carbohydrateCount'] } />
-      <Indicator userIndicator={ [UserMainData({userId, isMock}), 'lipidCount'] } />
-    </div>
+    <>
+      <header className="dashboard-header">
+
+        <img  alt="logo SportSee"
+              height="60.93px"
+              src={imgSportSeeLogo}
+              width="178px" />
+
+        <nav className="dashboard-nav">
+          <button>Accueil</button>
+          <button>Profil</button>
+          <button>Réglage</button>
+          <button>Communauté</button>
+        </nav>
+
+      </header>
+
+      <div className="dashboard-content">
+
+        <aside className="dashboard-aside">
+          <ul>
+            <li>
+              <img  alt="icon yoga"
+                    height="32px"
+                    src={imgYogaIconLogo}
+                    width="36px" />
+            </li>
+            <li>
+              <img  alt="icon nageur"
+                    height="32px"
+                    src={imgSwimIconLogo}
+                    width="32px" />
+            </li>
+            <li>
+              <img  alt="icon cycle"
+                    height="32px"
+                    src={imgCycleIconLogo}
+                    width="38px" />
+            </li>
+            <li>
+              <img  alt="icon haltère"
+                    height="32px"
+                    src={imgDumbbellIconLogo}
+                    width="32px" />
+            </li>
+          </ul>
+
+          <small>Copyright SportSee 2020</small>
+
+        </aside>
+
+        <section>
+
+          <DailyActivity userActivityData={ UserActivity({userId, isMock}) } />
+          <AverageSessions averageSessionsData={ UserAverageSessions({userId, isMock}) } />
+          <Intensity userPerformanceData={ UserPerformance({userId, isMock}) } />
+          <Score userScore={ UserMainData({userId, isMock}) } />
+          <Indicator userIndicator={ [UserMainData({userId, isMock}), 'calorieCount'] } />
+          <Indicator userIndicator={ [UserMainData({userId, isMock}), 'proteinCount'] } />
+          <Indicator userIndicator={ [UserMainData({userId, isMock}), 'carbohydrateCount'] } />
+          <Indicator userIndicator={ [UserMainData({userId, isMock}), 'lipidCount'] } />
+
+        </section>
+
+      </div>
+    </>
 
   )
 }
