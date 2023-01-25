@@ -20,7 +20,10 @@ function Dashboard() {
       <AverageSessions averageSessionsData={ UserAverageSessions({userId, isMock}) } />
       <Intensity userPerformanceData={ UserPerformance({userId, isMock}) } />
       <Score userScore={ UserMainData({userId, isMock}) } />
-      <Indicator />
+      <Indicator userIndicator={ [UserMainData({userId, isMock}), 'calorieCount'] } />
+      <Indicator userIndicator={ [UserMainData({userId, isMock}), 'proteinCount'] } />
+      <Indicator userIndicator={ [UserMainData({userId, isMock}), 'carbohydrateCount'] } />
+      <Indicator userIndicator={ [UserMainData({userId, isMock}), 'lipidCount'] } />
     </div>
 
   )
