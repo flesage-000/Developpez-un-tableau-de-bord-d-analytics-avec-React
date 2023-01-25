@@ -6,7 +6,6 @@ import './Intensity.css';
 
 function Intensity(userPerformanceData) {
   const UserPerformanceData = userPerformanceData.userPerformanceData;
-  console.log("UserPerformanceData", UserPerformanceData);
 
   return (
     <div className="intensity">

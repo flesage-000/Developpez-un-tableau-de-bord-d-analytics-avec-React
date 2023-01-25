@@ -1,8 +1,8 @@
 import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE } from '../assets/mock/data';
 
-export function UserMainData(id, isMock) {
-  if(isMock) {
-    const data = USER_MAIN_DATA.find(user => user.id === id*1)
+export function UserMainData(datas) { // console.log("UserMainData", datas);
+  if(datas.isMock) {
+    const data = USER_MAIN_DATA.find(user => user.id === datas.userId*1)
     // console.log("UserMainData", data);
     return data
   }
@@ -26,10 +26,9 @@ export function UserAverageSessions(datas) { // console.log("datas.isMock", data
   }
 }
 
-export function UserPerformance(datas) { console.log("datas.isMock", datas);
+export function UserPerformance(datas) { // console.log("datas.isMock", datas);
   if(datas.isMock) {
     let data = USER_PERFORMANCE.find(user => user.userId === datas.userId*1)
-    console.log("UserPerformance", data);
     data = setUserPerformanceData(data);
     return data
   }
