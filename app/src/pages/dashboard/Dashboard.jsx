@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import AverageSessions from "../../components/AverageSessions/AverageSessions";
 import DailyActivity from "../../components/DailyActivity/DailyActivity";
+import Indicator from "../../components/Indicators/Indicator";
 import Intensity from "../../components/Intensity/Intensity";
 import Score from "../../components/Score/Score";
 import { UserActivity, UserAverageSessions, UserMainData, UserPerformance } from '../../services/MockedAPI';
@@ -19,6 +20,7 @@ function Dashboard() {
       <AverageSessions averageSessionsData={ UserAverageSessions({userId, isMock}) } />
       <Intensity userPerformanceData={ UserPerformance({userId, isMock}) } />
       <Score userScore={ UserMainData({userId, isMock}) } />
+      <Indicator />
     </div>
 
   )
