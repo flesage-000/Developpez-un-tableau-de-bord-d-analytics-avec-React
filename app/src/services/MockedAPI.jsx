@@ -30,16 +30,21 @@ export function UserPerformance(datas) { console.log("datas.isMock", datas);
   if(datas.isMock) {
     let data = USER_PERFORMANCE.find(user => user.userId === datas.userId*1)
     console.log("UserPerformance", data);
-    data = setUserPErformanceData(data);
+    data = setUserPerformanceData(data);
     return data
   }
 }
 
-function setUserPErformanceData(datas) {
+/**
+ * Create user performance Array
+ * @param object} datas
+ * @returns Array
+ */
+function setUserPerformanceData(datas) {
   let newArray = [];
   const kind = Object.values(datas.kind);
   let data = datas.data;
-console.log("kind", kind);
+
   data.forEach((element, index) => {
     const newObject = {
       activity: kind[index++],
