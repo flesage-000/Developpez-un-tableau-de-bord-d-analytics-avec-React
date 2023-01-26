@@ -1,6 +1,7 @@
 :root {
   --clr-black-01: #000;
   --clr-black-02: rgba(40, 45, 48, 1);
+  --clr-black-03: rgba(32, 37, 58, 1);
 
   --clr-gray-02: rgba(116, 121, 140, 1);
   --clr-gray-03: rgba(155, 158, 172, 1);

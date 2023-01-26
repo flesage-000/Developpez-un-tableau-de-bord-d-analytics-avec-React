@@ -5,7 +5,8 @@ import { ResponsiveContainer, PieChart, Pie, Cell, Legend, Label, } from "rechar
 import './Score.css';
 
 function Score(userScore) {
-  const UserScore = userScore.userScore.todayScore * 100;
+  // Because key has different score name
+  const UserScore = (userScore.userScore.todayScore || userScore.userScore.score) * 100;
   const total = 100 - UserScore;
 
   const data = [
@@ -16,9 +17,8 @@ function Score(userScore) {
 
   const customLegend = () => {
     return (
-      <p  className="piechart-legend"
-          style={{ paddingLeft: `7%` }}>
-        {data[0].name}
+      <p  className="user-score-legend">
+        Score
       </p>
     );
   };
@@ -29,22 +29,24 @@ function Score(userScore) {
       <>
         <text className="recharts-text recharts-label"
               dominantBaseline="central"
-              fill="black"
+              fill="rgba(32, 37, 58, 1)"
               textAnchor="middle"
               x={cx}
-              y={cy - 5}>
+              y={cy - 15}>
           <tspan  alignmentBaseline="middle"
-                  fontSize="35px">
+                  fontSize="26px"
+                  fontWeight={700}>
             {value1}
           </tspan>
         </text>
         <text className="recharts-text recharts-label"
               dominantBaseline="central"
-              fill="#74798C"
+              fill="rgba(116, 121, 140, 1)"
               textAnchor="middle"
               x={cx}
-              y={cy + 20}>
-          <tspan  fontSize="12.3px">{ value2 }</tspan>
+              y={cy}>
+          <tspan  fontSize="16px"
+                  fontWeight={500}>{ value2 }</tspan>
         </text>
       </>
     );
@@ -52,33 +54,32 @@ function Score(userScore) {
 
   return(
     <div className="user-score rounded">
+
       <ResponsiveContainer>
-        <PieChart height={250}
-                  width={730}>
+
+        <PieChart>
+
           <Legend align="left"
                   content={ customLegend }
                   verticalAlign="top" />
+
           <circle cx="50%"
-                  cy="51.6%"
-                  fill="white"
+                  cy="60%"
+                  fill="rgba(255, 255, 255, 1)"
                   r="33%" />
-          <Pie  cornerRadius={50}
-                cx="50%"
-                cy="40%"
-                data={ data }
+
+          <Pie  data={data}
                 dataKey="value"
                 endAngle={450}
-                innerRadius={88}
-                label={ false }
-                outerRadius={97}
+                innerRadius="90%"
+                label={false}
+                outerRadius="100%"
                 paddingAngle={0}
-                startAngle={90}
-                stroke="">
+                startAngle={90}>
+
             <Label  content={
-                      <CustomLabel
-                        value1={data[0].value + "%"}
-                        value2="de votre objectif"
-                      />
+                      <CustomLabel  value1={data[0].value + "%"}
+                                    value2={`de votre objectif`} />
                     }
                     position="center" />
             {
@@ -87,9 +88,13 @@ function Score(userScore) {
                       key={ `cell-${index}` } />
               ))
             }
+
           </Pie>
+
         </PieChart>
+
       </ResponsiveContainer>
+
     </div>
   )
 }
