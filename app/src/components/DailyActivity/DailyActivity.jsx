@@ -52,36 +52,44 @@ function DailyActivity(userActivityData) {
       <ResponsiveContainer  height={320}
                             width="100%">
         <BarChart barCategoryGap={8}
-                  data={UserActivityData}>
+                  data={UserActivityData}
+                  margin={{top: 24, right: 32, bottom: 24, left: 24}}>
 
-          <CartesianGrid  stroke="#dedede"
-                          strokeDasharray="3 3"
+          <CartesianGrid  stroke="rgba(222, 222, 222, 1)"
+                          strokeDasharray="1 1"
                           vertical={false} />
 
-          <Tooltip  content={customToolTip} />
+          <Tooltip  content={customToolTip}
+                    cursor={{ fill: 'rgba(196, 196, 196, 0.5)' }}
+                    wrapperStyle={{ outline: "none" }} />
 
           <Bar  barSize={7}
                 dataKey="kilogram"
-                fill="#282D30"
+                fill="rgba(40, 45, 48, 1)"
                 name="Poids (kg)"
                 radius={[3.5, 3.5, 0, 0]} />
 
           <Bar  barSize={7}
                 dataKey="calories"
-                fill="#E60000"
+                fill="rgba(230, 0, 0, 1)"
                 name="Calories brûlées (kCal)"
                 radius={[3.5, 3.5, 0, 0]} />
 
           <XAxis  dataKey="dayCount"
-                  stroke="#9b9eac" />
+                  stroke="rgba(155, 158, 172, 1)"
+                  tickLine={false} />
 
           <YAxis  axisLine={false}
                   dataKey="calories"
+                  domain={[50, 'dataMax']}
                   orientation="right"
-                  stroke="#9b9eac" />
+                  stroke="rgba(155, 158, 172, 1)"
+                  tickLine={false}
+                  type="number" />
 
           <Legend align="right"
                   content={customLegend}
+                  height={90}
                   iconSize="8"
                   iconType="circle"
                   layout="horizontal"

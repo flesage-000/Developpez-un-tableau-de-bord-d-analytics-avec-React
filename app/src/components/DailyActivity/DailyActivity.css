@@ -1,7 +1,8 @@
-.daily-activity .barchart-tooltip {
-  background-color: var(--clr-red-02);
+.daily-activity {
+  background-color: var(--clr-white-02);
 }
 
+/* Daily activity: legend */
 .daily-activity .barchart-legend,
 .daily-activity .barchart-legend ul,
 .daily-activity .barchart-legend li {
@@ -10,12 +11,20 @@
   flex-wrap: nowrap;
 }
 .daily-activity .barchart-legend  {
+  line-height: 24px;
+
   justify-content: space-between;
+}
+.daily-activity .barchart-legend h3  {
+  font-size: 15px;
 }
 .daily-activity .barchart-legend ul {
   gap: 32px;
 }
 .daily-activity .barchart-legend li {
+  color: var(--clr-gray-02);
+  font-size: 14px;
+
   align-items: center;
   gap: 10px;
 }
@@ -27,4 +36,15 @@
 
   height: var(--icon-size);
   width: var(--icon-size);
+}
+
+/* Daily activity: tooltip */
+.daily-activity .barchart-tooltip {
+  text-align: center;
+  background-color: var(--clr-red-02);
+  color: var(--clr-white-01);
+  font-size: 7px;
+  line-height: 24px;
+
+  padding: 5px;
 }

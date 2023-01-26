@@ -3,13 +3,17 @@
   --clr-black-02: rgba(40, 45, 48, 1);
 
   --clr-gray-02: rgba(116, 121, 140, 1);
+  --clr-gray-03: rgba(155, 158, 172, 1);
+  --clr-gray-04: rgba(222, 222, 222, 1);
+  --clr-gray-05: rgba(196, 196, 196, 0.5);
 
   --clr-red-01: #FF0000;
-  --clr-red-02: #E60000;
+  --clr-red-02: rgba(230, 0, 0, 1);
   --clr-red-03: rgba(255, 1, 1, 1);
 
-  --clr-white-01: #FFF;
+  --clr-white-01: rgba(255, 255, 255, 1);
   --clr-white-02: rgba(251, 251, 251, 1);
+  --clr-white-03: rgba(222, 222, 222, 1);
 }
 
 html,
