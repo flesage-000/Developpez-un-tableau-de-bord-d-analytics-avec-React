@@ -51,43 +51,45 @@ function Score(userScore) {
   }
 
   return(
-    <div className="user-score">
-      <PieChart height={250}
-                width={730}>
-        <Legend align="left"
-                content={ customLegend }
-                verticalAlign="top" />
-        <circle cx="50%"
-                cy="51.6%"
-                fill="white"
-                r="33%" />
-        <Pie  cornerRadius={50}
-              cx="50%"
-              cy="40%"
-              data={ data }
-              dataKey="value"
-              endAngle={450}
-              innerRadius={88}
-              label={ false }
-              outerRadius={97}
-              paddingAngle={0}
-              startAngle={90}
-              stroke="">
-          <Label  content={
-                    <CustomLabel
-                      value1={data[0].value + "%"}
-                      value2="de votre objectif"
-                    />
-                  }
-                  position="center" />
-          {
-            data.map((entry, index) => (
-              <Cell fill={ colors[index % colors.length] }
-                    key={ `cell-${index}` } />
-            ))
-          }
-        </Pie>
-      </PieChart>
+    <div className="user-score rounded">
+      <ResponsiveContainer>
+        <PieChart height={250}
+                  width={730}>
+          <Legend align="left"
+                  content={ customLegend }
+                  verticalAlign="top" />
+          <circle cx="50%"
+                  cy="51.6%"
+                  fill="white"
+                  r="33%" />
+          <Pie  cornerRadius={50}
+                cx="50%"
+                cy="40%"
+                data={ data }
+                dataKey="value"
+                endAngle={450}
+                innerRadius={88}
+                label={ false }
+                outerRadius={97}
+                paddingAngle={0}
+                startAngle={90}
+                stroke="">
+            <Label  content={
+                      <CustomLabel
+                        value1={data[0].value + "%"}
+                        value2="de votre objectif"
+                      />
+                    }
+                    position="center" />
+            {
+              data.map((entry, index) => (
+                <Cell fill={ colors[index % colors.length] }
+                      key={ `cell-${index}` } />
+              ))
+            }
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
     </div>
   )
 }

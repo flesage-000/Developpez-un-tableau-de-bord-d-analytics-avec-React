@@ -2,16 +2,18 @@
   --clr-black-01: #000;
   --clr-black-02: rgba(40, 45, 48, 1);
 
+  --clr-gray-02: rgba(116, 121, 140, 1);
+
   --clr-red-01: #FF0000;
   --clr-red-02: #E60000;
   --clr-red-03: rgba(255, 1, 1, 1);
 
   --clr-white-01: #FFF;
+  --clr-white-02: rgba(251, 251, 251, 1);
 }
 
 html,
 body {
-  height: 100vh;
   min-height: 100vh;
 }
 
@@ -24,6 +26,7 @@ html {
 body {
   height: 100vh;
   min-height: 100vh;
+  min-width: 1024px;
   margin: 0;
 
   font-weight: 500;
@@ -47,4 +50,8 @@ code {
   grid-template-areas:
             "header"
             "content";
+}
+
+.rounded {
+  border-radius: 5px;
 }

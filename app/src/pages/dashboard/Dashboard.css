@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  width: 100vw;
+  /* width: 100vw; */
 }
 
 .dashboard-header,
@@ -41,7 +41,9 @@
 }
 .dashboard-content > section {
   overflow-y: scroll;
+
   padding: 68px 107px;
+  width: 100%;
 }
 
 /* Website aside menu */
@@ -52,7 +54,6 @@
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: space-evenly;
-  padding: 0 0 69px 0;
 }
 .dashboard-aside ul {
   display: flex;
@@ -83,4 +84,47 @@
   font-weight: 500;
   line-height: 24px;
   transform: rotate(-90deg);
+}
+
+/* Website board */
+.dashboard-board {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+/* Website board : indicators */
+.dashboard-board .dashboard-graphs {
+  flex: 1;
+}
+
+/* Website board : daily-activity */
+.dashboard-board .daily-activity {
+  margin-top: 77px;
+  width: 100%;
+}
+
+/* Website board : indicators */
+.dashboard-board .dashboard-indicators {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 39px;
+  margin-left: 31px;
+  margin-top: 77px;
+}
+
+/* Website board : details */
+.dashboard-board .dashboard-details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-top: 28px;
+}
+.dashboard-board .dashboard-details > div {
+  flex: 1 0 calc(100% / 3 - 2 * 30px);
+  height: 265px;
+}
+.dashboard-board .dashboard-details > div:not(:first-child) {
+  margin-left: 30px;
 }

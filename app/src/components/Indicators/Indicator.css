@@ -1,1 +1,27 @@
-.indicator {}
+.indicator {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--clr-white-02);
+  padding: 32px;
+}
+.indicator .icon-container {
+}
+
+.indicator .informations {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin-left: 30px;
+}
+.indicator .information-value {
+  color: var(--clr-black-03);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+.indicator .information-type {
+  color: var(--clr-gray-02);
+  font-size: 14px;
+  line-height: 24px;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { PolarAngleAxis , PolarGrid, PolarRadiusAxis, Radar , RadarChart } from 'recharts';
+import { PolarAngleAxis , PolarGrid, PolarRadiusAxis, Radar , RadarChart, ResponsiveContainer } from 'recharts';
 
 import './Intensity.css';
 
@@ -8,32 +8,35 @@ function Intensity(userPerformanceData) {
   const UserPerformanceData = userPerformanceData.userPerformanceData;
 
   return (
-    <div className="intensity">
+    <div className="intensity rounded">
       <h3>Intensité</h3>
-      <RadarChart cx="50%"
-                  cy="50%"
-                  data={UserPerformanceData}
-                  height={250}
-                  outerRadius={85}
-                  width={730}>
 
-        <PolarGrid  radialLines={false}
-                    stroke="white" />
+      <ResponsiveContainer>
+        <RadarChart cx="50%"
+                    cy="50%"
+                    data={UserPerformanceData}
+                    height={250}
+                    outerRadius={85}
+                    width={730}>
 
-        <PolarAngleAxis dataKey="activity"
-                        fontSize="12"
-                        stroke="white"
-                        tickLine={false} />
+          <PolarGrid  radialLines={false}
+                      stroke="white" />
 
-        <PolarRadiusAxis  axisLine={false}
-                          tick={false} />
+          <PolarAngleAxis dataKey="activity"
+                          fontSize="12"
+                          stroke="white"
+                          tickLine={false} />
 
-        <Radar  dataKey="kind"
-                fill="rgba(255, 1, 1, 0.7)"
-                fillOpacity={0.65}
-                stroke="red" />
+          <PolarRadiusAxis  axisLine={false}
+                            tick={false} />
 
-      </RadarChart>
+          <Radar  dataKey="kind"
+                  fill="rgba(255, 1, 1, 0.7)"
+                  fillOpacity={0.65}
+                  stroke="red" />
+
+        </RadarChart>
+      </ResponsiveContainer>
 
     </div>
   )

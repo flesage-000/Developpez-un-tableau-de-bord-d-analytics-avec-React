@@ -17,6 +17,7 @@ import imgCycleIconLogo from './../../assets/medias/icon-cycle.png';
 import imgDumbbellIconLogo from './../../assets/medias/icon-dumbbell.png';
 
 function Dashboard() {
+  const isProd = process.env.REACT_APP_ENV; console.log("isProd", isProd);
   const { userId } = useParams();
   const isMock = window.location.href.split('?')[1] || false;
 
@@ -68,7 +69,7 @@ function Dashboard() {
             </li>
           </ul>
 
-          <small>Copyright SportSee 2020</small>
+          <small>Copyright&nbsp;SportSee&nbsp;2020</small>
 
         </aside>
 
@@ -76,14 +77,25 @@ function Dashboard() {
 
           <Welcome  userData={ UserMainData({userId, isMock}) } />
 
-          <DailyActivity userActivityData={ UserActivity({userId, isMock}) } />
-          <AverageSessions averageSessionsData={ UserAverageSessions({userId, isMock}) } />
-          <Intensity userPerformanceData={ UserPerformance({userId, isMock}) } />
-          <Score userScore={ UserMainData({userId, isMock}) } />
-          <Indicator userIndicator={ [UserMainData({userId, isMock}), 'calorieCount'] } />
-          <Indicator userIndicator={ [UserMainData({userId, isMock}), 'proteinCount'] } />
-          <Indicator userIndicator={ [UserMainData({userId, isMock}), 'carbohydrateCount'] } />
-          <Indicator userIndicator={ [UserMainData({userId, isMock}), 'lipidCount'] } />
+          <div className="dashboard-board">
+
+            <div className="dashboard-graphs">
+              <DailyActivity userActivityData={ UserActivity({userId, isMock}) } />
+
+              <div className="dashboard-details">
+                <AverageSessions averageSessionsData={ UserAverageSessions({userId, isMock}) } />
+                <Intensity userPerformanceData={ UserPerformance({userId, isMock}) } />
+                <Score userScore={ UserMainData({userId, isMock}) } />
+              </div>
+              </div>
+
+            <div className="dashboard-indicators">
+              <Indicator userIndicator={ [UserMainData({userId, isMock}), 'calorieCount'] } />
+              <Indicator userIndicator={ [UserMainData({userId, isMock}), 'proteinCount'] } />
+              <Indicator userIndicator={ [UserMainData({userId, isMock}), 'carbohydrateCount'] } />
+              <Indicator userIndicator={ [UserMainData({userId, isMock}), 'lipidCount'] } />
+            </div>
+          </div>
 
         </section>
 

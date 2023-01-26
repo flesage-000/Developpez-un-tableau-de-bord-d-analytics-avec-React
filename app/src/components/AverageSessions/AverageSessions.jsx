@@ -21,25 +21,25 @@ function AverageSessions(userAverageSessionsData) {
   }
 
   return (
-    <div className="average-sessions">
+    <div className="average-sessions rounded">
       <h3>Durée moyenne des sessions</h3>
-      <LineChart  data={ UserAverageSessionsData }
-                  width={500}
-                  height={300}>
+      <ResponsiveContainer>
+        <LineChart  data={ UserAverageSessionsData }>
 
-        <XAxis  axisLine={false}
-                dataKey="dayInWeek"
-                stroke="white" />
-        <YAxis  dataKey="sessionLength"
-                hide={true}
-                stroke="white" />
+          <XAxis  axisLine={false}
+                  dataKey="dayInWeek"
+                  stroke="white" />
+          <YAxis  dataKey="sessionLength"
+                  hide={true}
+                  stroke="white" />
 
-        <Line dataKey="sessionLength"
-              stroke="white"
-              type="monotone" />
+          <Line dataKey="sessionLength"
+                stroke="white"
+                type="monotone" />
 
-        <Tooltip  content={ customToolTip } />
-      </LineChart>
+          <Tooltip  content={ customToolTip } />
+        </LineChart>
+        </ResponsiveContainer>
     </div>
   )
 }
