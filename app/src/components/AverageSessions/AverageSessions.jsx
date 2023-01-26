@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ResponsiveContainer, LineChart, Line, Legend, YAxis, XAxis, Tooltip } from "recharts";
+import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip } from "recharts";
 
 import './AverageSessions.css';
 
@@ -22,24 +22,42 @@ function AverageSessions(userAverageSessionsData) {
 
   return (
     <div className="average-sessions rounded">
+
       <h3>Durée moyenne des sessions</h3>
+
       <ResponsiveContainer>
         <LineChart  data={ UserAverageSessionsData }>
+          <defs>
+            <linearGradient id="linear">
+              <stop offset="0%"
+                    stopColor="rgba(255, 255, 255, .5" />
+              <stop offset="100%"
+                    stopColor="rgba(255, 255, 255, 1" />
+            </linearGradient>
+          </defs>
 
           <XAxis  axisLine={false}
                   dataKey="dayInWeek"
-                  stroke="white" />
+                  stroke="rgba(255, 255, 255, 1)"
+                  tickLine={false} />
+
           <YAxis  dataKey="sessionLength"
                   hide={true}
-                  stroke="white" />
+                  stroke="rgba(255, 255, 255, 1)"
+                  wrapperStyle={{fontSize: 12}} />
 
-          <Line dataKey="sessionLength"
-                stroke="white"
-                type="monotone" />
+          <Line activeDot={false}
+                dataKey="sessionLength"
+                dot={false}
+                stroke="url(#linear)"
+                type="basis"
+                strokeWidth={2} />
 
-          <Tooltip  content={ customToolTip } />
+          <Tooltip  content={ customToolTip }
+                    wrapperStyle={{ outline: "none" }} />
         </LineChart>
-        </ResponsiveContainer>
+      </ResponsiveContainer>
+
     </div>
   )
 }

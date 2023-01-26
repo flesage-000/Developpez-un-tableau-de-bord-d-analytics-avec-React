@@ -82,10 +82,8 @@ function setDayInWeek(data) {
         dayInwWeek = "L";
         break;
       case 2:
-        dayInwWeek = "m";
-        break;
       case 3:
-        dayInwWeek = "m";
+        dayInwWeek = "M";
         break;
       case 4:
         dayInwWeek = "J";
