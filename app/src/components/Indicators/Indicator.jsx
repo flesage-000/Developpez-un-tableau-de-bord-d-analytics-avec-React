@@ -39,7 +39,7 @@ function Indicator(datas) {
   }
   indicator.label = label;
   indicator.icon = icon;
-  indicator.value = data[dataType] + unit;
+  indicator.value = data[dataType].toLocaleString() + unit;
 
   return(
     <div className="indicator rounded">
