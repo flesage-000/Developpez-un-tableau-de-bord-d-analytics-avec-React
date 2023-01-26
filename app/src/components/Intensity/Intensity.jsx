@@ -9,22 +9,17 @@ function Intensity(userPerformanceData) {
 
   return (
     <div className="intensity rounded">
-      <h3>Intensité</h3>
 
       <ResponsiveContainer>
-        <RadarChart cx="50%"
-                    cy="50%"
-                    data={UserPerformanceData}
-                    height={250}
-                    outerRadius={85}
-                    width={730}>
+        <RadarChart data={UserPerformanceData}
+                    outerRadius={50}>
 
           <PolarGrid  radialLines={false}
-                      stroke="white" />
+                      stroke="rgba(255, 255, 255, 1)" />
 
           <PolarAngleAxis dataKey="activity"
                           fontSize="12"
-                          stroke="white"
+                          stroke="rgba(255, 255, 255, 1)"
                           tickLine={false} />
 
           <PolarRadiusAxis  axisLine={false}
@@ -32,8 +27,7 @@ function Intensity(userPerformanceData) {
 
           <Radar  dataKey="kind"
                   fill="rgba(255, 1, 1, 0.7)"
-                  fillOpacity={0.65}
-                  stroke="red" />
+                  fillOpacity={0.65} />
 
         </RadarChart>
       </ResponsiveContainer>

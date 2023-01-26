@@ -35,6 +35,37 @@ export function UserPerformance(datas) { // console.log("datas.isMock", datas);
 }
 
 /**
+ * Translate english performance name to french
+ * @param {string} data
+ * @returns string
+ */
+function setPerformanceNameInFrench(data) { console.log("setPerformanceNameInFrench", data);
+  let name = null;
+
+  switch(data) {
+    case "cardio":
+      name = "Cardio";
+      break;
+    case "energy":
+      name = "Energie";
+      break;
+    case "endurance":
+      name = "Endurance";
+      break;
+    case "strength":
+      name = "Force";
+      break;
+    case "speed":
+      name = "Vitesse";
+      break;
+    default:
+    // case "":
+      name = "Intensité";
+  }
+  return name
+}
+
+/**
  * Create user performance Array
  * @param object} datas
  * @returns Array
@@ -45,11 +76,15 @@ function setUserPerformanceData(datas) {
   let data = datas.data;
 
   data.forEach((element, index) => {
+
+    const activityName = setPerformanceNameInFrench(kind[index++])
+
     const newObject = {
-      activity: kind[index++],
+      activity: activityName,
       kind: element.value,
       fullMark: 200
     };
+
     newArray.push(newObject);
   });
   return newArray;
