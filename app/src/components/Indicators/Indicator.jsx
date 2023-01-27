@@ -31,7 +31,8 @@ function Indicator(datas) {
       icon = iconGlucides;
       unit = 'g';
       break;
-    case 'lipidCount':
+    default:
+    // case 'lipidCount':
       label = 'Lipides';
       icon = iconLipides;
       unit = 'g';
