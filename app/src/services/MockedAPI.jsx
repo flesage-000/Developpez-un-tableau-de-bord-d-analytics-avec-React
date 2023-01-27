@@ -1,7 +1,9 @@
 import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE } from '../assets/mock/data';
 
+const isProd = process.env.REACT_APP_ENV; console.log("isProd", isProd);
+
 export function UserMainData(datas) { // console.log("UserMainData", datas);
-  if(datas.isMock) {
+  if(isProd === 'dev') {
     const data = USER_MAIN_DATA.find(user => user.id === datas.userId*1)
     // console.log("UserMainData", data);
     return data
@@ -9,7 +11,7 @@ export function UserMainData(datas) { // console.log("UserMainData", datas);
 }
 
 export function UserActivity(info) { // console.log("info.isMock", info);
-  if(info.isMock) {
+  if(isProd === 'dev') {
     let data = USER_ACTIVITY.find(user => user.userId === info.userId * 1)
     // console.log("UserActivity", data);
     data.sessions = getDayCount(data.sessions);
@@ -18,7 +20,7 @@ export function UserActivity(info) { // console.log("info.isMock", info);
 }
 
 export function UserAverageSessions(datas) { // console.log("datas.isMock", datas);
-  if(datas.isMock) {
+  if(isProd === 'dev') {
     let data = USER_AVERAGE_SESSIONS.find(user => user.userId === datas.userId * 1)
     // console.log("UserAverageSessionsdd", data);
     data = setDayInWeek(data)
@@ -27,7 +29,7 @@ export function UserAverageSessions(datas) { // console.log("datas.isMock", data
 }
 
 export function UserPerformance(datas) { // console.log("datas.isMock", datas);
-  if(datas.isMock) {
+  if(isProd === 'dev') {
     let data = USER_PERFORMANCE.find(user => user.userId === datas.userId*1)
     data = setUserPerformanceData(data);
     return data
@@ -39,7 +41,7 @@ export function UserPerformance(datas) { // console.log("datas.isMock", datas);
  * @param {string} data
  * @returns string
  */
-function setPerformanceNameInFrench(data) { console.log("setPerformanceNameInFrench", data);
+function setPerformanceNameInFrench(data) { // console.log("setPerformanceNameInFrench", data);
   let name = null;
 
   switch(data) {

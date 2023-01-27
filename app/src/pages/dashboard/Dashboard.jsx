@@ -17,7 +17,6 @@ import imgCycleIconLogo from './../../assets/medias/icon-cycle.png';
 import imgDumbbellIconLogo from './../../assets/medias/icon-dumbbell.png';
 
 function Dashboard() {
-  const isProd = process.env.REACT_APP_ENV; console.log("isProd", isProd);
   const { userId } = useParams();
   const isMock = window.location.href.split('?')[1] || false;
 
@@ -75,25 +74,25 @@ function Dashboard() {
 
         <section>
 
-          <Welcome  userData={ UserMainData({userId, isMock}) } />
+          <Welcome  userData={ UserMainData({userId}) } />
 
           <div className="dashboard-board">
 
             <div className="dashboard-graphs">
-              <DailyActivity userActivityData={ UserActivity({userId, isMock}) } />
+              <DailyActivity userActivityData={ UserActivity({userId}) } />
 
               <div className="dashboard-details">
-                <AverageSessions averageSessionsData={ UserAverageSessions({userId, isMock}) } />
+                <AverageSessions averageSessionsData={ UserAverageSessions({userId}) } />
                 <Intensity userPerformanceData={ UserPerformance({userId, isMock}) } />
-                <Score userScore={ UserMainData({userId, isMock}) } />
+                <Score userScore={ UserMainData({userId}) } />
               </div>
               </div>
 
             <div className="dashboard-indicators">
-              <Indicator userIndicator={ [UserMainData({userId, isMock}), 'calorieCount'] } />
-              <Indicator userIndicator={ [UserMainData({userId, isMock}), 'proteinCount'] } />
-              <Indicator userIndicator={ [UserMainData({userId, isMock}), 'carbohydrateCount'] } />
-              <Indicator userIndicator={ [UserMainData({userId, isMock}), 'lipidCount'] } />
+              <Indicator userIndicator={ [UserMainData({userId}), 'calorieCount'] } />
+              <Indicator userIndicator={ [UserMainData({userId}), 'proteinCount'] } />
+              <Indicator userIndicator={ [UserMainData({userId}), 'carbohydrateCount'] } />
+              <Indicator userIndicator={ [UserMainData({userId}), 'lipidCount'] } />
             </div>
           </div>
 
