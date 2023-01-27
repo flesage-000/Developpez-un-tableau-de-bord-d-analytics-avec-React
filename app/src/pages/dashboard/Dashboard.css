@@ -17,7 +17,7 @@
 .dashboard-header {
   align-items: center;
   grid-area: header;
-  height: 100px;
+  height: var(--header-height);
   justify-content: space-between;
   padding: 0 29px;
 }
@@ -37,13 +37,13 @@
 /* Website content */
 .dashboard-content {
   grid-area: content;
-  height: calc(100vh - 100px);
+  height: calc(100vh - var(--header-height));
 }
 .dashboard-content > section {
   overflow-y: scroll;
 
-  padding: 68px 107px;
-  width: 100%;
+  padding: 68px var(--aside-width);
+  width: calc(100% - var(--aside-width) - 2 * var(--aside-width));
 }
 
 /* Website aside menu */
@@ -54,6 +54,7 @@
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: space-evenly;
+  width: var(--aside-width);
 }
 .dashboard-aside ul {
   display: flex;
@@ -66,7 +67,6 @@
   border-radius: 6px;
 
   height: 64px;
-  margin: 0 27px 0 26px;
   position: relative;
   width: 64px;
 }

@@ -48,7 +48,7 @@ function DailyActivity(userActivityData) {
   }
 
   return (
-    <div className="daily-activity">
+    <div className="daily-activity rounded">
       <ResponsiveContainer  height={320}
                             width="100%">
         <BarChart barCategoryGap={8}

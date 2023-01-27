@@ -15,6 +15,9 @@
   --clr-white-01: rgba(255, 255, 255, 1);
   --clr-white-02: rgba(251, 251, 251, 1);
   --clr-white-03: rgba(222, 222, 222, 1);
+
+  --aside-width: 107px;
+  --header-height: 91px;
 }
 
 html,
