@@ -14,7 +14,7 @@ function Intensity(userPerformanceData) {
   return (
     <div className="intensity rounded">
 
-      <ResponsiveContainer>
+      <ResponsiveContainer width="99%">
         <RadarChart data={UserPerformanceData}
                     outerRadius={50}>
 

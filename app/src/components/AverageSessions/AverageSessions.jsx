@@ -29,7 +29,7 @@ function AverageSessions(userAverageSessionsData) {
 
       <h3>Durée moyenne des sessions</h3>
 
-      <ResponsiveContainer>
+      <ResponsiveContainer width="99%">
         <LineChart  data={ UserAverageSessionsData }>
           <defs>
             <linearGradient id="linear">

@@ -59,7 +59,7 @@ function Score(userScore) {
   return(
     <div className="user-score rounded">
 
-      <ResponsiveContainer>
+      <ResponsiveContainer width="99%">
 
         <PieChart>
 

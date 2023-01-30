@@ -54,7 +54,7 @@ function DailyActivity(userActivityData) {
   return (
     <div className="daily-activity rounded">
       <ResponsiveContainer  height={320}
-                            width="100%">
+                            width="99%">
         <BarChart barCategoryGap={8}
                   data={UserActivityData}
                   margin={{top: 24, right: 32, bottom: 24, left: 24}}>
