@@ -2,7 +2,11 @@ import React from 'react';
 
 import './Welcome.css';
 
-function Welcome(userData) {
+/**
+ * Set "Welcome {name}"
+ * @param {object} userData
+ */
+function Welcome(userData) { console.log("typeof", typeof userData)
   const UserFirstName = userData.userData.userInfos.firstName;
 
   return (

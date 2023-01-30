@@ -4,6 +4,10 @@ import { PolarAngleAxis , PolarGrid, PolarRadiusAxis, Radar , RadarChart, Respon
 
 import './Intensity.css';
 
+/**
+ * Set user intensity chart
+ * @param {object} userPerformanceData
+ */
 function Intensity(userPerformanceData) {
   const UserPerformanceData = userPerformanceData.userPerformanceData;
 

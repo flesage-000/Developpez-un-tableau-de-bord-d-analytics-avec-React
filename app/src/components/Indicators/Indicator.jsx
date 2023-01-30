@@ -6,8 +6,11 @@ import iconGlucides from './../../assets/medias/icon-glucides.png';
 import iconLipides from './../../assets/medias/icon-lipides.png';
 import iconProteines from './../../assets/medias/icon-proteines.png';
 
-
-function Indicator(datas) {
+/**
+ * Set the user indicator
+ * @param {object} datas
+ */
+function Indicator(datas) { console.log("Indicator", datas);
   const data = datas.userIndicator[0].keyData; console.log("data", data);
   const dataType = datas.userIndicator[1];
 

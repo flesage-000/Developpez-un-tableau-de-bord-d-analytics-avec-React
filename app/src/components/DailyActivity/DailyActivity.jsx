@@ -4,6 +4,10 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 
 import './DailyActivity.css';
 
+/**
+ * Set daily activity chart
+ * @param {object} userActivityData
+ */
 function DailyActivity(userActivityData) {
   const UserActivityData = userActivityData.userActivityData;
 

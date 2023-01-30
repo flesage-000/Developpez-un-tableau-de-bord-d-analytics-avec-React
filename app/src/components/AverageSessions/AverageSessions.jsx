@@ -4,6 +4,10 @@ import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip } from "rec
 
 import './AverageSessions.css';
 
+/**
+ * Set user average session
+ * @param {object} userAverageSessionsData
+ */
 function AverageSessions(userAverageSessionsData) {
   const UserAverageSessionsData = userAverageSessionsData.averageSessionsData;
 

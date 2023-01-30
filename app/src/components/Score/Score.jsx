@@ -4,6 +4,10 @@ import { ResponsiveContainer, PieChart, Pie, Cell, Legend, Label, } from "rechar
 
 import './Score.css';
 
+/**
+ * Set score chart to give percentage achieved in goal
+ * @param {object} userScore
+ */
 function Score(userScore) {
   // Because key has different score name
   const UserScore = (userScore.userScore.todayScore || userScore.userScore.score) * 100;

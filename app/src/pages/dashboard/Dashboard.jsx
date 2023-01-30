@@ -16,9 +16,11 @@ import imgSwimIconLogo from './../../assets/medias/icon-swim.png';
 import imgCycleIconLogo from './../../assets/medias/icon-cycle.png';
 import imgDumbbellIconLogo from './../../assets/medias/icon-dumbbell.png';
 
+/**
+ * Dashboard page
+ */
 function Dashboard() {
   const { userId } = useParams();
-  const isMock = window.location.href.split('?')[1] || false;
 
   return(
     <>
@@ -83,7 +85,7 @@ function Dashboard() {
 
               <div className="dashboard-details">
                 <AverageSessions averageSessionsData={ UserAverageSessions({userId}) } />
-                <Intensity userPerformanceData={ UserPerformance({userId, isMock}) } />
+                <Intensity userPerformanceData={ UserPerformance({userId}) } />
                 <Score userScore={ UserMainData({userId}) } />
               </div>
               </div>

@@ -1,37 +1,58 @@
 import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE } from '../assets/mock/data';
 
-const isProd = process.env.REACT_APP_ENV; console.log("isProd", isProd);
+const isProd = process.env.REACT_APP_ENV_DATA; console.log("isProd", isProd);
 
-export function UserMainData(datas) { // console.log("UserMainData", datas);
+/**
+ * Load data "Welcome", "Score", "indicators" ("id", "userInfos", "todayScore", "keyData")
+ * @param {object} userId
+ * @returns object
+ */
+export function UserMainData(userId) {
   if(isProd === 'dev') {
-    const data = USER_MAIN_DATA.find(user => user.id === datas.userId*1)
-    // console.log("UserMainData", data);
+    const data = USER_MAIN_DATA.find(user => user.id === userId.userId*1)
+
     return data
   }
 }
 
-export function UserActivity(info) { // console.log("info.isMock", info);
+/**
+ * Load data for "Daily activity" ("day", "kilogram", "calories", "dayCount")
+ * @param {object} userId
+ * @returns object
+ */
+export function UserActivity(userId) {
   if(isProd === 'dev') {
-    let data = USER_ACTIVITY.find(user => user.userId === info.userId * 1)
-    // console.log("UserActivity", data);
+    let data = USER_ACTIVITY.find(user => user.userId === userId.userId * 1)
     data.sessions = getDayCount(data.sessions);
+
     return data.sessions
   }
 }
 
-export function UserAverageSessions(datas) { // console.log("datas.isMock", datas);
+/**
+ * Load data for "Average user sessions" ("day", "sessionLength", "dayInWeek")
+ * @param {object} datas
+ * @returns object
+ */
+export function UserAverageSessions(datas) {
   if(isProd === 'dev') {
     let data = USER_AVERAGE_SESSIONS.find(user => user.userId === datas.userId * 1)
-    // console.log("UserAverageSessionsdd", data);
     data = setDayInWeek(data)
+
     return data.sessions
   }
 }
 
-export function UserPerformance(datas) { // console.log("datas.isMock", datas);
+/**
+ * Load data for "Intensity" chart ("cardio", "energy", "endurance", "strength", "speed", "intensity")
+ * @param {object} datas
+ * @returns object
+ */
+export function UserPerformance(datas) {
   if(isProd === 'dev') {
     let data = USER_PERFORMANCE.find(user => user.userId === datas.userId*1)
     data = setUserPerformanceData(data);
+
     return data
   }
 }
