@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Indicator.css';
 import iconCalories from './../../assets/medias/icon-calories.png';
@@ -10,8 +11,8 @@ import iconProteines from './../../assets/medias/icon-proteines.png';
  * Set the user indicator
  * @param {object} datas
  */
-function Indicator(datas) { console.log("Indicator", datas);
-  const data = datas.userIndicator[0].keyData; console.log("data", data);
+function Indicator(datas) {
+  const data = datas.userIndicator[0].keyData;
   const dataType = datas.userIndicator[1];
 
   let indicator = {};
@@ -63,6 +64,10 @@ function Indicator(datas) { console.log("Indicator", datas);
       </div>
     </div>
   )
+}
+
+Indicator.propTypes = {
+  datas: PropTypes.object
 }
 
 export default Indicator;

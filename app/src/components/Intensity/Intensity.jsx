@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 import { PolarAngleAxis , PolarGrid, PolarRadiusAxis, Radar , RadarChart, ResponsiveContainer } from 'recharts';
 
@@ -6,7 +7,7 @@ import './Intensity.css';
 
 /**
  * Set user intensity chart
- * @param {object} userPerformanceData
+ * @param {array} userPerformanceData
  */
 function Intensity(userPerformanceData) {
   const UserPerformanceData = userPerformanceData.userPerformanceData;
@@ -38,6 +39,10 @@ function Intensity(userPerformanceData) {
 
     </div>
   )
+}
+
+Intensity.propTypes = {
+  userPerformanceData: PropTypes.array
 }
 
 export default Intensity;

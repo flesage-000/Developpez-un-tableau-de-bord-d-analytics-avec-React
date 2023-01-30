@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
@@ -6,7 +7,7 @@ import './DailyActivity.css';
 
 /**
  * Set daily activity chart
- * @param {object} userActivityData
+ * @param {array} userActivityData
  */
 function DailyActivity(userActivityData) {
   const UserActivityData = userActivityData.userActivityData;
@@ -103,6 +104,10 @@ function DailyActivity(userActivityData) {
       </ResponsiveContainer>
     </div>
   )
+}
+
+DailyActivity.propTypes = {
+  userActivityData: PropTypes.array
 }
 
 export default DailyActivity;

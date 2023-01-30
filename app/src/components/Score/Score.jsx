@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { ResponsiveContainer, PieChart, Pie, Cell, Legend, Label, } from "recharts";
 
@@ -101,6 +102,10 @@ function Score(userScore) {
 
     </div>
   )
+}
+
+Score.propTypes = {
+  userScore: PropTypes.object
 }
 
 export default Score;

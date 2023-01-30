@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip } from "recharts";
 
@@ -64,6 +65,10 @@ function AverageSessions(userAverageSessionsData) {
 
     </div>
   )
+}
+
+AverageSessions.propTypes = {
+  userData: PropTypes.object
 }
 
 export default AverageSessions;
