@@ -19,7 +19,9 @@
   grid-area: header;
   height: var(--header-height);
   justify-content: space-between;
-  padding: 0 29px;
+}
+.dashboard img {
+  margin-left: 29px;
 }
 
 /* Website menu */
