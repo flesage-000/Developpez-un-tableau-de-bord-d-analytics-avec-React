@@ -6,16 +6,12 @@ import Dashboard from './pages/dashboard/Dashboard';
 
 const router = createBrowserRouter([
   {
-    path: '/tests',
+    path: '/',
     element: <Dashboard />,
     errorElement: <Error />,
     children: [
       {
-        path: '/tests/:userId',
-        element: <Dashboard />
-      },
-      {
-        path: '/tests/:userId?mock',
+        path: '/:userId',
         element: <Dashboard />
       },
     ]
