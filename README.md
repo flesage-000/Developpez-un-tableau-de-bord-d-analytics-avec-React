@@ -1,6 +1,6 @@
 # P12 - Développez un tableau de bord d'analytics avec React
 
-SportSee is a website to monitor physicals performances.
+SportSee is a monitor physicals performances website.
 
 ## 1. Install/run back end
 Follow readme from [Project 9 - Front-end Dashboard](https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard)
@@ -19,7 +19,7 @@ Must be on port **3000**.
 - Run the project with `npm start`.
 
 ### 2.3 Datas
-Only user `12` and `18` are available.
+Only users `12` and `18` are available.
 
 Consult following user links :
 - [12](http://localhost:3001/12) (assume port is 3001)
