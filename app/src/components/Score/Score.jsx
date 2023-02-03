@@ -85,7 +85,7 @@ function Score({ userId }) {
           <circle cx="50%"
                   cy="60%"
                   fill="rgba(255, 255, 255, 1)"
-                  r="33%" />
+                  r="38%" />
 
           <Pie  data={data}
                 dataKey="value"
