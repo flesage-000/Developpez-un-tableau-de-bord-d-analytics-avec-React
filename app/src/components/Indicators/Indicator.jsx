@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+
+import { UserMainData } from '../../services/MockedAPI';
 
 import './Indicator.css';
 import iconCalories from './../../assets/medias/icon-calories.png';
@@ -9,11 +11,29 @@ import iconProteines from './../../assets/medias/icon-proteines.png';
 
 /**
  * Set the user indicator
- * @param {object} datas
+ * @param {string} userId
  */
-function Indicator(datas) {
-  const data = datas.userIndicator[0].keyData;
-  const dataType = datas.userIndicator[1];
+function Indicator({ userId, type }) {
+  let [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    if (process.env.REACT_APP_ENV_DATA === 'dev0') {
+      setUserData(UserMainData({ userId }));
+    } else {
+      async function dataAPI() {
+        await fetch(`${process.env.REACT_APP_ENV_API_URL}user/${userId}`)
+        .then(response => response.json())
+        .then(data => setUserData(data.data))
+        .catch(error => { console.log(error) })
+      }
+      dataAPI();
+    }
+  }, []);
+
+  if(!userData) return <></>
+
+  const data = userData.keyData;
+  const dataType = type;
 
   let indicator = {};
   let icon = null;
@@ -67,7 +87,8 @@ function Indicator(datas) {
 }
 
 Indicator.propTypes = {
-  datas: PropTypes.object
+  userId: PropTypes.string,
+  type: PropTypes.string
 }
 
 export default Indicator;

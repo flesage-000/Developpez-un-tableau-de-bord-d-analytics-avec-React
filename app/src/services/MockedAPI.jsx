@@ -1,18 +1,12 @@
 import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE } from '../assets/mock/data';
 
-const isProd = process.env.REACT_APP_ENV_DATA; console.log("isProd", isProd);
-
 /**
  * Load data "Welcome", "Score", "indicators" ("id", "userInfos", "todayScore", "keyData")
  * @param {object} userId
  * @returns object
  */
 export function UserMainData(userId) {
-  if(isProd === 'dev') {
-    const data = USER_MAIN_DATA.find(user => user.id === userId.userId*1)
-
-    return data
-  }
+  return USER_MAIN_DATA.find(user => user.id === userId.userId * 1)
 }
 
 /**
@@ -21,12 +15,10 @@ export function UserMainData(userId) {
  * @returns object
  */
 export function UserActivity(userId) {
-  if(isProd === 'dev') {
-    let data = USER_ACTIVITY.find(user => user.userId === userId.userId * 1)
-    data.sessions = getDayCount(data.sessions);
+  let data = USER_ACTIVITY.find(user => user.userId === userId.userId * 1)
+  data.sessions = getDayCount(data.sessions);
 
-    return data.sessions
-  }
+  return data.sessions
 }
 
 /**
@@ -35,12 +27,9 @@ export function UserActivity(userId) {
  * @returns object
  */
 export function UserAverageSessions(datas) {
-  if(isProd === 'dev') {
-    let data = USER_AVERAGE_SESSIONS.find(user => user.userId === datas.userId * 1)
-    data = setDayInWeek(data)
+  let data = USER_AVERAGE_SESSIONS.find(user => user.userId === datas.userId * 1);
 
-    return data.sessions
-  }
+  return setDayInWeek(data.sessions)
 }
 
 /**
@@ -49,12 +38,11 @@ export function UserAverageSessions(datas) {
  * @returns object
  */
 export function UserPerformance(datas) {
-  if(isProd === 'dev') {
     let data = USER_PERFORMANCE.find(user => user.userId === datas.userId*1)
+    console.log("UserPerformance data", data);
     data = setUserPerformanceData(data);
 
     return data
-  }
 }
 
 /**
@@ -93,7 +81,7 @@ function setPerformanceNameInFrench(data) { // console.log("setPerformanceNameIn
  * @param object} datas
  * @returns Array
  */
-function setUserPerformanceData(datas) {
+export function setUserPerformanceData(datas) {
   let newArray = [];
   const kind = Object.values(datas.kind);
   let data = datas.data;
@@ -130,12 +118,12 @@ function getDayCount(data) {
  * @param {object} data
  * @returns object
  */
-function setDayInWeek(data) {
-  const dataLen = data.sessions.length;
+export function setDayInWeek(data) {
+  const dataLen = data.length;
   let dayInwWeek = null;
 
   for(let i = 0; i < dataLen; i++) {
-    switch (data.sessions[i].day) {
+    switch (data[i].day) {
       case 1:
         dayInwWeek = "L";
         break;
@@ -155,7 +143,7 @@ function setDayInWeek(data) {
       default:
         dayInwWeek = "D";
     }
-    data.sessions[i].dayInWeek = dayInwWeek;
+    data[i].dayInWeek = dayInwWeek;
   }
 
   return data

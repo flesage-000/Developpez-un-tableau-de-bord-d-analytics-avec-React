@@ -7,7 +7,6 @@ import Indicator from "../../components/Indicators/Indicator";
 import Intensity from "../../components/Intensity/Intensity";
 import Score from "../../components/Score/Score";
 import Welcome from "../../components/Welcome/Welcome";
-import { UserActivity, UserAverageSessions, UserMainData, UserPerformance } from '../../services/MockedAPI';
 
 import './Dashboard.css';
 import imgSportSeeLogo from './../../assets/medias/sportsee_logo.png';
@@ -76,25 +75,29 @@ function Dashboard() {
 
         <section>
 
-          <Welcome  userData={ UserMainData({userId}) } />
+          <Welcome  userId={userId} />
 
           <div className="dashboard-board">
 
             <div className="dashboard-graphs">
-              <DailyActivity userActivityData={ UserActivity({userId}) } />
+              <DailyActivity userId={userId} />
 
               <div className="dashboard-details">
-                <AverageSessions averageSessionsData={ UserAverageSessions({userId}) } />
-                <Intensity userPerformanceData={ UserPerformance({userId}) } />
-                <Score userScore={ UserMainData({userId}) } />
+                <AverageSessions  userId={userId} />
+                <Intensity userId={userId} />
+                <Score userId={userId} />
               </div>
-              </div>
+            </div>
 
             <div className="dashboard-indicators">
-              <Indicator userIndicator={ [UserMainData({userId}), 'calorieCount'] } />
-              <Indicator userIndicator={ [UserMainData({userId}), 'proteinCount'] } />
-              <Indicator userIndicator={ [UserMainData({userId}), 'carbohydrateCount'] } />
-              <Indicator userIndicator={ [UserMainData({userId}), 'lipidCount'] } />
+              <Indicator  userId={userId}
+                          type="calorieCount" />
+              <Indicator  userId={userId}
+                          type="proteinCount" />
+              <Indicator  userId={userId}
+                          type="carbohydrateCount" />
+              <Indicator  userId={userId}
+                          type="lipidCount" />
             </div>
           </div>
 

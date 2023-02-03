@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { UserActivity } from '../../services/MockedAPI';
 
 import './DailyActivity.css';
 
 /**
  * Set daily activity chart
- * @param {array} userActivityData
+ * @param {string} userId
  */
-function DailyActivity(userActivityData) {
-  const UserActivityData = userActivityData.userActivityData;
+function DailyActivity({ userId }) {
+  let [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    if (process.env.REACT_APP_ENV_DATA === 'dev') {
+      setUserData(UserActivity({ userId }));
+    } else {
+      async function dataAPI() {
+        await fetch(`${process.env.REACT_APP_ENV_API_URL}user/${userId}/activity`)
+        .then(response => response.json())
+        .then(data => setUserData(data.data.sessions))
+        .catch(error => { console.log(error) })
+      }
+      dataAPI();
+    }
+  }, []);
 
   /**
    * Generate custom tooltip
@@ -29,8 +44,8 @@ function DailyActivity(userActivityData) {
   /**
    * Generate custom legend
    */
-  const customLegend = (UserActivityData) => {
-    const { payload } = UserActivityData;
+  const customLegend = (userData) => {
+    const { payload } = userData;
     return(
       <div className="barchart-legend rounded">
         <h3>Activité quotidienne</h3>
@@ -57,7 +72,7 @@ function DailyActivity(userActivityData) {
       <ResponsiveContainer  height={320}
                             width="99%">
         <BarChart barCategoryGap={8}
-                  data={UserActivityData}
+                  data={userData}
                   margin={{top: 24, right: 32, bottom: 24, left: 24}}>
 
           <CartesianGrid  stroke="rgba(222, 222, 222, 1)"
@@ -107,7 +122,7 @@ function DailyActivity(userActivityData) {
 }
 
 DailyActivity.propTypes = {
-  userActivityData: PropTypes.array
+  userId: PropTypes.string
 }
 
 export default DailyActivity;

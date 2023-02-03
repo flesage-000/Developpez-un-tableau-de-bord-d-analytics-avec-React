@@ -1,22 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { ResponsiveContainer, PieChart, Pie, Cell, Legend, Label, } from "recharts";
+import { UserMainData } from '../../services/MockedAPI';
 
 import './Score.css';
 
 /**
  * Set score chart to give percentage achieved in goal
- * @param {object} userScore
+ * @param {string} userId
  */
-function Score(userScore) {
-  // Because key has different score name
-  const UserScore = (userScore.userScore.todayScore || userScore.userScore.score) * 100;
-  const total = 100 - UserScore;
+function Score({ userId }) {
+  let [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    if (process.env.REACT_APP_ENV_DATA === 'dev') {
+      setUserData(UserMainData({ userId }));
+    } else {
+      async function dataAPI() {
+        await fetch(`${process.env.REACT_APP_ENV_API_URL}user/${userId}`)
+        .then(response => response.json())
+        .then(data => setUserData(data.data))
+        .catch(error => { console.log(error) })
+      }
+      dataAPI();
+    }
+  }, []);
+  if (!userData) return <></>
 
   const data = [
-    { name: "Score", value: UserScore },
-    { name: "Total", value: total },
+    { name: "Score", value: (userData.todayScore || userData.score) * 100 },
+    { name: "Total", value: 100 - (userData.todayScore || userData.score) },
   ];
   const colors = ["red", "#FBFBFB"];
 
@@ -105,7 +119,7 @@ function Score(userScore) {
 }
 
 Score.propTypes = {
-  userScore: PropTypes.object
+  userId: PropTypes.string
 }
 
 export default Score;
