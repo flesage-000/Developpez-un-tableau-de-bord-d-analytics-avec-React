@@ -20,7 +20,7 @@
   height: var(--header-height);
   justify-content: space-between;
 }
-.dashboard img {
+.dashboard-header img {
   margin-left: 29px;
 }
 
