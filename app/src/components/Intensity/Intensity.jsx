@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { PolarAngleAxis , PolarGrid, PolarRadiusAxis, Radar , RadarChart, ResponsiveContainer } from 'recharts';
-import { UserPerformance, setUserPerformanceData } from '../../services/MockedAPI';
+import { UserPerformance } from '../../services/MockedAPI';
 
 import './Intensity.css';
 
@@ -14,20 +14,7 @@ function Intensity(userId) {
   let [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    if (process.env.REACT_APP_ENV_DATA === 'dev0') {
-      setUserData(UserPerformance(userId));
-    } else {
-      async function dataAPI() {
-        await fetch(`${process.env.REACT_APP_ENV_API_URL}user/${userId.userId}/performance`)
-        .then(response => response.json())
-        .then(data => {
-          data = setUserPerformanceData(data.data);
-          return setUserData(data)
-        })
-        .catch(error => { console.log(error) })
-      }
-      dataAPI();
-    }
+    setUserData(UserPerformance(userId));
   }, []);
 
   if (!userData) return <></>

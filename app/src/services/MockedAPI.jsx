@@ -6,7 +6,19 @@ import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE 
  * @returns object
  */
 export function UserMainData(userId) {
-  return USER_MAIN_DATA.find(user => user.id === userId.userId * 1)
+  let data = null;
+  if (process.env.REACT_APP_ENV_DATA === 'dev') {
+    data = USER_MAIN_DATA.find(user => user.id === userId.userId * 1)
+  } else {
+    async function dataAPI() {
+      await fetch(`${process.env.REACT_APP_ENV_API_URL}user/${userId}`)
+      .then(response => response.json())
+      .then(data => { return data.data })
+      .catch(error => { console.log(error) })
+    }
+    dataAPI();
+  }
+  return data
 }
 
 /**
@@ -15,7 +27,18 @@ export function UserMainData(userId) {
  * @returns object
  */
 export function UserActivity(userId) {
-  let data = USER_ACTIVITY.find(user => user.userId === userId.userId * 1)
+  let data = null;
+  if (process.env.REACT_APP_ENV_DATA === 'dev') {
+    data = USER_ACTIVITY.find(user => user.userId === userId.userId * 1)
+  } else {
+    async function dataAPI() {
+      await fetch(`${process.env.REACT_APP_ENV_API_URL}user/${userId}/activity`)
+      .then(response => response.json())
+      .then(data => { return data.data.sessions })
+      .catch(error => { console.log(error) })
+    }
+    dataAPI();
+  }
   data.sessions = getDayCount(data.sessions);
 
   return data.sessions
@@ -27,7 +50,21 @@ export function UserActivity(userId) {
  * @returns object
  */
 export function UserAverageSessions(datas) {
-  let data = USER_AVERAGE_SESSIONS.find(user => user.userId === datas.userId * 1);
+  let data = null;
+  if (process.env.REACT_APP_ENV_DATA === 'dev') {
+    data = USER_AVERAGE_SESSIONS.find(user => user.userId === datas.userId * 1);
+  } else {
+    async function dataAPI() {
+      await fetch(`${process.env.REACT_APP_ENV_API_URL}user/${datas.userId}/average-sessions`)
+      .then(response => response.json())
+      .then(data => {
+        data = setDayInWeek(data.data.sessions);
+        return data
+      })
+      .catch(error => { console.log(error) })
+    }
+    dataAPI();
+  }
 
   return setDayInWeek(data.sessions)
 }
@@ -38,9 +75,22 @@ export function UserAverageSessions(datas) {
  * @returns object
  */
 export function UserPerformance(datas) {
-    let data = USER_PERFORMANCE.find(user => user.userId === datas.userId*1)
-    console.log("UserPerformance data", data);
+  let data = null;
+  if (process.env.REACT_APP_ENV_DATA === 'dev') {
+    data = USER_PERFORMANCE.find(user => user.userId === datas.userId*1)
     data = setUserPerformanceData(data);
+  } else {
+    async function dataAPI() {
+      await fetch(`${process.env.REACT_APP_ENV_API_URL}user/${datas.userId}/performance`)
+      .then(response => response.json())
+      .then(data => {
+        data = setUserPerformanceData(data.data);
+        return data
+      })
+      .catch(error => { console.log(error) })
+    }
+    dataAPI();
+  }
 
     return data
 }

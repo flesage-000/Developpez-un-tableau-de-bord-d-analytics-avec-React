@@ -17,17 +17,7 @@ function Indicator({ userId, type }) {
   let [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    if (process.env.REACT_APP_ENV_DATA === 'dev0') {
-      setUserData(UserMainData({ userId }));
-    } else {
-      async function dataAPI() {
-        await fetch(`${process.env.REACT_APP_ENV_API_URL}user/${userId}`)
-        .then(response => response.json())
-        .then(data => setUserData(data.data))
-        .catch(error => { console.log(error) })
-      }
-      dataAPI();
-    }
+    setUserData(UserMainData({ userId }));
   }, []);
 
   if(!userData) return <></>

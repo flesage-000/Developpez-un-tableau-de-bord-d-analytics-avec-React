@@ -14,17 +14,7 @@ function DailyActivity({ userId }) {
   let [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    if (process.env.REACT_APP_ENV_DATA === 'dev') {
-      setUserData(UserActivity({ userId }));
-    } else {
-      async function dataAPI() {
-        await fetch(`${process.env.REACT_APP_ENV_API_URL}user/${userId}/activity`)
-        .then(response => response.json())
-        .then(data => setUserData(data.data.sessions))
-        .catch(error => { console.log(error) })
-      }
-      dataAPI();
-    }
+    setUserData(UserActivity({ userId }));
   }, []);
 
   /**
