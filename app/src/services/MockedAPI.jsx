@@ -5,20 +5,18 @@ import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE 
  * @param {object} userId
  * @returns object
  */
-export function UserMainData(userId) {
-  let data = null;
+export async function UserMainData(userId) {
+  let pData = {};
   if (process.env.REACT_APP_ENV_DATA === 'dev') {
-    data = USER_MAIN_DATA.find(user => user.id === userId.userId * 1)
+    pData = USER_MAIN_DATA.find(user => user.id === userId.userId * 1)
   } else {
-    async function dataAPI() {
-      await fetch(`${process.env.REACT_APP_ENV_API_URL}user/${userId}`)
-      .then(response => response.json())
-      .then(data => { return data.data })
-      .catch(error => { console.log(error) })
-    }
-    dataAPI();
+    await fetch(`${process.env.REACT_APP_ENV_API_URL}user/${userId.userId}`)
+      .then((response) => response.json())
+      .then((data) => pData = data.data)
+      .catch((error) => pData.error = error);
   }
-  return data
+
+  return pData
 }
 
 /**
@@ -26,22 +24,23 @@ export function UserMainData(userId) {
  * @param {object} userId
  * @returns object
  */
-export function UserActivity(userId) {
-  let data = null;
+export async function UserActivity(userId) {
+  let pData = {};
   if (process.env.REACT_APP_ENV_DATA === 'dev') {
-    data = USER_ACTIVITY.find(user => user.userId === userId.userId * 1)
+    pData = USER_ACTIVITY.find(user => user.userId === userId.userId * 1)
+    pData.sessions = getDayCount(pData.sessions);
   } else {
-    async function dataAPI() {
-      await fetch(`${process.env.REACT_APP_ENV_API_URL}user/${userId}/activity`)
-      .then(response => response.json())
-      .then(data => { return data.data.sessions })
-      .catch(error => { console.log(error) })
-    }
-    dataAPI();
+    await fetch(`${process.env.REACT_APP_ENV_API_URL}user/${userId.userId}/activity`)
+      .then((response) => response.json())
+      .then((data) => pData = data.data)
+      .catch((error) => pData.error = error);
   }
-  data.sessions = getDayCount(data.sessions);
+  // In case of error
+  if (pData.error) return pData;
 
-  return data.sessions
+  pData.sessions = getDayCount(pData.sessions);
+
+  return pData.sessions
 }
 
 /**
@@ -49,24 +48,20 @@ export function UserActivity(userId) {
  * @param {object} datas
  * @returns object
  */
-export function UserAverageSessions(datas) {
-  let data = null;
+export async function UserAverageSessions(datas) {
+  let pData = {};
   if (process.env.REACT_APP_ENV_DATA === 'dev') {
-    data = USER_AVERAGE_SESSIONS.find(user => user.userId === datas.userId * 1);
+    pData = USER_AVERAGE_SESSIONS.find(user => user.userId === datas.userId * 1);
   } else {
-    async function dataAPI() {
-      await fetch(`${process.env.REACT_APP_ENV_API_URL}user/${datas.userId}/average-sessions`)
-      .then(response => response.json())
-      .then(data => {
-        data = setDayInWeek(data.data.sessions);
-        return data
-      })
-      .catch(error => { console.log(error) })
-    }
-    dataAPI();
+    await fetch(`${process.env.REACT_APP_ENV_API_URL}user/${datas.userId}/average-sessions`)
+      .then((response) => response.json())
+      .then((data) => pData = data.data)
+      .catch((error) => pData.error = error);
   }
+  // In case of error
+  if (pData.error) return pData;
 
-  return setDayInWeek(data.sessions)
+  return setDayInWeek(pData.sessions)
 }
 
 /**
@@ -74,25 +69,23 @@ export function UserAverageSessions(datas) {
  * @param {object} datas
  * @returns object
  */
-export function UserPerformance(datas) {
-  let data = null;
+export async function UserPerformance(datas) {
+  let pData = {};
   if (process.env.REACT_APP_ENV_DATA === 'dev') {
-    data = USER_PERFORMANCE.find(user => user.userId === datas.userId*1)
-    data = setUserPerformanceData(data);
+    pData = USER_PERFORMANCE.find(user => user.userId === datas.userId*1)
+    // pData = setUserPerformanceData(pData);
   } else {
-    async function dataAPI() {
-      await fetch(`${process.env.REACT_APP_ENV_API_URL}user/${datas.userId}/performance`)
-      .then(response => response.json())
-      .then(data => {
-        data = setUserPerformanceData(data.data);
-        return data
-      })
-      .catch(error => { console.log(error) })
-    }
-    dataAPI();
+    await fetch(`${process.env.REACT_APP_ENV_API_URL}user/${datas.userId}/performance`)
+      .then((response) => response.json())
+      .then((data) => pData = data.data)
+      .catch((error) => pData.error = error);
   }
+  // In case of error
+  if (pData.error) return pData;
 
-    return data
+  pData = setUserPerformanceData(pData)
+
+  return pData
 }
 
 /**
@@ -100,7 +93,7 @@ export function UserPerformance(datas) {
  * @param {string} data
  * @returns string
  */
-function setPerformanceNameInFrench(data) { // console.log("setPerformanceNameInFrench", data);
+function setPerformanceNameInFrench(data) {
   let name = null;
 
   switch(data) {

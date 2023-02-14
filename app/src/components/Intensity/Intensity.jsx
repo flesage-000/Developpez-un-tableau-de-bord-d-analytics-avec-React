@@ -14,14 +14,17 @@ function Intensity(userId) {
   let [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    setUserData(UserPerformance(userId));
+    let fetchData = async () => setUserData(await UserPerformance(userId));
+    fetchData();
   }, []);
-
-  if (!userData) return <></>
 
   return (
     <div className="intensity rounded">
 
+      { userData && userData.error && <div className="error">
+        Impossible de charger les données d'intensité'. <em>Erreur au chargement des données.</em>
+      </div> }
+      { userData && !userData.error &&
       <ResponsiveContainer width="99%">
         <RadarChart data={userData}
                     outerRadius={50}>
@@ -42,7 +45,7 @@ function Intensity(userId) {
                   fillOpacity={0.65} />
 
         </RadarChart>
-      </ResponsiveContainer>
+      </ResponsiveContainer> }
 
     </div>
   )

@@ -14,7 +14,8 @@ function DailyActivity({ userId }) {
   let [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    setUserData(UserActivity({ userId }));
+    let fetchData = async () => setUserData(await UserActivity({ userId }));
+    fetchData();
   }, []);
 
   /**
@@ -59,6 +60,9 @@ function DailyActivity({ userId }) {
 
   return (
     <div className="daily-activity rounded">
+      { userData && userData.error ? <div className="error">
+        Impossible de charger les données des activitées quotidiennes. <em>Erreur au chargement des données.</em>
+      </div> :
       <ResponsiveContainer  height={320}
                             width="99%">
         <BarChart barCategoryGap={8}
@@ -106,7 +110,7 @@ function DailyActivity({ userId }) {
                   verticalAlign="top" />
 
         </BarChart>
-      </ResponsiveContainer>
+      </ResponsiveContainer> }
     </div>
   )
 }

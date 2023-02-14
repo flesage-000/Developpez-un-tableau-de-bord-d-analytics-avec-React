@@ -14,7 +14,8 @@ function AverageSessions({ userId }) {
   let [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    setUserData(UserAverageSessions({ userId }));
+    let fetchData = async () => setUserData(await UserAverageSessions({ userId }));
+    fetchData();
   }, []);
 
   /**
@@ -33,40 +34,45 @@ function AverageSessions({ userId }) {
   return (
     <div className="average-sessions rounded">
 
-      <h3>Durée moyenne des sessions</h3>
+      { userData && userData.error ? <div className="error">
+        Impossible de charger les données des sessions. <em>Erreur au chargement des données.</em>
+      </div> :
+      <>
+        <h3>Durée moyenne des sessions</h3>
 
-      <ResponsiveContainer width="99%">
-        <LineChart  data={ userData }>
-          <defs>
-            <linearGradient id="linear">
-              <stop offset="0%"
-                    stopColor="rgba(255, 255, 255, .5" />
-              <stop offset="100%"
-                    stopColor="rgba(255, 255, 255, 1" />
-            </linearGradient>
-          </defs>
+        <ResponsiveContainer width="99%">
+          <LineChart  data={ userData }>
+            <defs>
+              <linearGradient id="linear">
+                <stop offset="0%"
+                      stopColor="rgba(255, 255, 255, .5" />
+                <stop offset="100%"
+                      stopColor="rgba(255, 255, 255, 1" />
+              </linearGradient>
+            </defs>
 
-          <XAxis  axisLine={false}
-                  dataKey="dayInWeek"
-                  stroke="rgba(255, 255, 255, 1)"
-                  tickLine={false} />
+            <XAxis  axisLine={false}
+                    dataKey="dayInWeek"
+                    stroke="rgba(255, 255, 255, 1)"
+                    tickLine={false} />
 
-          <YAxis  dataKey="sessionLength"
-                  hide={true}
-                  stroke="rgba(255, 255, 255, 1)"
-                  wrapperStyle={{fontSize: 12}} />
+            <YAxis  dataKey="sessionLength"
+                    hide={true}
+                    stroke="rgba(255, 255, 255, 1)"
+                    wrapperStyle={{fontSize: 12}} />
 
-          <Line activeDot={false}
-                dataKey="sessionLength"
-                dot={false}
-                stroke="url(#linear)"
-                type="basis"
-                strokeWidth={2} />
+            <Line activeDot={false}
+                  dataKey="sessionLength"
+                  dot={false}
+                  stroke="url(#linear)"
+                  type="basis"
+                  strokeWidth={2} />
 
-          <Tooltip  content={ customToolTip }
-                    wrapperStyle={{ outline: "none" }} />
-        </LineChart>
-      </ResponsiveContainer>
+            <Tooltip  content={ customToolTip }
+                      wrapperStyle={{ outline: "none" }} />
+          </LineChart>
+        </ResponsiveContainer>
+      </>}
 
     </div>
   )
